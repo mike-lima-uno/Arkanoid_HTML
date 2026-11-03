@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, blockless bouncing-ball arcade game.">
+    <title>Bouncing — Arkanoid, one bounce at a time</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="game-header">
+        <h3>Player 1</h3>
+        <h3>Score <output id="score" aria-live="polite">0</output></h3>
+      </header>
+
+      <section class="game-content" aria-label="Bouncing game">
+        <canvas
+          id="game"
+          width="640"
+          height="760"
+          aria-label="Game field. Press Space to start, pause, resume, or play again. Move the paddle with the left and right arrow keys or A and D."
+          aria-describedby="game-help"
+        ></canvas>
+        <p class="visually-hidden" id="game-help">
+          Move the paddle with the left and right arrow keys or A and D.
+          Press Space to start, pause, resume, or play again.
+        </p>
+        <p class="visually-hidden" aria-live="polite">
+          Lives <output id="lives">3</output>
+        </p>
+        <p class="visually-hidden" id="game-announcement" aria-live="polite">
+          How to play. Move with the left and right arrow keys or A and D.
+          Press Space to start.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

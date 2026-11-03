@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play Bouncing, a simple Arkanoid-inspired browser game.">
+  <title>Arkanoid HTML - Bouncing</title>
+
+  <script>
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: "class" };
+  </script>
+</head>
+
+<body class="min-h-screen bg-white px-6 py-10 text-black dark:bg-[#1e1e1e] dark:text-[#d4d4d4]">
+  <button
+    id="themeToggle"
+    type="button"
+    aria-label="Switch to dark mode"
+    aria-pressed="false"
+    title="Switch to dark mode"
+    class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 bg-gray-100 p-0 text-center text-xl leading-none shadow transition hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-300 dark:bg-[#252526] dark:hover:bg-[#333333]">
+    <span id="themeIcon" aria-hidden="true">☾</span>
+  </button>
+
+  <main class="mx-auto flex min-h-[calc(100vh-5rem)] max-w-xl flex-col">
+    <header class="mb-10 text-center">
+      <h1 class="mb-3 text-2xl font-bold">Arkanoid HTML</h1>
+      <p class="text-gray-700 dark:text-gray-300">
+        Choose a game and keep the ball bouncing.
+      </p>
+    </header>
+
+    <section aria-label="Available games" class="grid gap-5">
+      <a
+        href="v0_bouncing_blockless/index.html"
+        class="border border-gray-700 p-6 text-center shadow transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-[#252526] dark:hover:bg-[#333333]">
+        <h2 class="mb-3 text-lg font-semibold">Bouncing Blockless</h2>
+        <p class="text-sm text-gray-700 dark:text-gray-300">
+          The first version from the idea to create a simple html game.<br>Bounce the ball, survive as long as you can, and build your score.
+        </p>
+      </a>
+    </section>
+
+    <footer class="mt-auto pt-12 text-center text-sm text-gray-600 dark:text-gray-400">
+      <p>
+        Created by
+        <a href="https://github.com/mike-lima-uno" class="hover:text-black dark:hover:text-white">
+          Cicero Lima
+        </a>
+      </p>
+      <p class="mt-1">
+        Under the
+        <a href="LICENSE" class="underline hover:text-black dark:hover:text-white">MIT License</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const themePreference = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    let hasManualTheme = false;
+
+    function updateThemeButton() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const action = isDark ? "Switch to light mode" : "Switch to dark mode";
+      themeToggle.setAttribute("aria-label", action);
+      themeToggle.setAttribute("title", action);
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      themeIcon.textContent = isDark ? "☼" : "☾";
+    }
+
+    themePreference.addEventListener("change", (event) => {
+      if (!hasManualTheme) {
+        document.documentElement.classList.toggle("dark", event.matches);
+        updateThemeButton();
+      }
+    });
+
+    themeToggle.addEventListener("click", () => {
+      hasManualTheme = true;
+      document.documentElement.classList.toggle("dark");
+      updateThemeButton();
+    });
+
+    updateThemeButton();
+  </script>
+</body>
+</html>
